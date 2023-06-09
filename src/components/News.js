@@ -43,8 +43,8 @@ useEffect(()=>{
 
   const fetchMoreData = async () => {
     // a fake async api call like which sends
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page+1}&pageSize=${props.pageSize}`
     setpage(page+1);
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`
     let data = await fetch(url);
     let parseddata = await data.json();
     setarticles(articles.concat(parseddata.articles));
@@ -53,7 +53,7 @@ useEffect(()=>{
 
     return (
       <>
-        <h1 className='text-center' style={{ margin: "40px 0px" }}>InfoSphere - Top {props.category} Headlines</h1>
+        <h1 className='text-center' style={{ margin: "40px 0px",marginTop:"90px"}}>InfoSphere - Top {props.category} Headlines</h1>
         {loading && <Spinner/>}
         <InfiniteScroll
           dataLength={articles.length}
